@@ -5,7 +5,7 @@
   "main": "src/server.ts",
   "scripts": {
     "build": "npx tsc",
-    "start": "nodemon dist/src/server.js | pino-pretty",
+    "start": "node dist/src/server.js | pino-pretty",
     "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/src/server.js | pino-pretty\"",
     "lint": "xo"
   },
