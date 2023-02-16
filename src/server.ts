@@ -22,7 +22,9 @@ import {generateOpenApi} from "./swagger";
 
 setTimeout(async () => {
     application.use('/api-docs', SwaggerServe, SwaggerSetup(require(await generateOpenApi())));
-    application.use('/', async (_: Request, res: Response) => res.redirect('/api-docs'));
+    application.get('/', async (req: Request, res: Response) => {
+        return res.status(200).send({message: 'Hi!'});
+    });
 
     // Start the application
     application.listen(PORT, () => {
