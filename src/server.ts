@@ -10,14 +10,16 @@ const PORT: Number = Number(process.env.PORT) || 7689;
 
 // Create the main application
 const application: Express = express();
-const logger = pino();
+const logger = pino({
+    level: 'debug'
+});
 
 // Add the echo router
 import echoRouter from "./routes/echo";
 
 application.use(async (req: Request, res: Response, next: NextFunction) => {
     next();
-    console.log(`[${new Date().toISOString()}] ${req.method} ${req.path} - ${res.statusCode}`);
+    logger.debug(`${req.method} ${req.path} - ${res.statusCode}`);
 });
 application.use('/', echoRouter);
 
