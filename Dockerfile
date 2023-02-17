@@ -13,6 +13,7 @@ WORKDIR /home/node
 RUN npm install pino-pretty@^9.2.0 -g
 COPY package* ./
 RUN npm install --omit=dev
+COPY views/ ./views
 COPY --from=builder ./app/dist ./dist/
 EXPOSE 7689
 CMD ["npm", "start"]
