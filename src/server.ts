@@ -1,6 +1,7 @@
 import express, {Express, NextFunction, Request, Response} from 'express';
 import dotenv from 'dotenv';
 import pino from 'pino';
+import cors from 'cors';
 
 import {serve as SwaggerServe, setup as SwaggerSetup} from "swagger-ui-express";
 
@@ -10,6 +11,7 @@ const PORT: Number = Number(process.env.PORT) || 7689;
 
 // Create the main application
 const application: Express = express();
+application.use(cors());
 application.set('view engine', 'ejs');
 const logger = pino({
     level: 'debug'
