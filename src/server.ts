@@ -27,8 +27,8 @@ application.use('/', echoRouter);
 import {generateOpenApi} from "./swagger";
 
 setTimeout(async () => {
-    application.use('/api-docs', SwaggerServe, SwaggerSetup(require(await generateOpenApi())));
-    application.get('/', async (_: Request, res: Response) => res.status(200).send({message: 'Hello!'}));
+    application.use('/api-docs/', SwaggerServe, SwaggerSetup(require(await generateOpenApi())));
+    application.get('/', async (req: Request, res: Response) => res.redirect(`${req.protocol}://${req.get('host')}${req.originalUrl}api-docs/`));
 
     // Start the application
     application.listen(PORT, () => {
