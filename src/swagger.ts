@@ -1,6 +1,7 @@
 import swaggerAutogen from "swagger-autogen";
 import {mkdir} from "fs/promises";
 import {existsSync} from "fs";
+import {CurrentTrack} from "./helper/currentTrack";
 
 const SwaggerOutputFolder = '/openapi/';
 const SwaggerOutputPath = '.' + SwaggerOutputFolder + 'openapi-output.json';
@@ -18,7 +19,10 @@ const SwaggerConfiguration = {
     host: 'api.astrihale.me/spotify',
     schemes: ['https'],
     consumes: ['application/json'],
-    produces: ['application/json']
+    produces: ['application/json'],
+    definitions: {
+        CurrentTrack: new CurrentTrack()
+    }
 };
 
 const generateOpenApi = async () => {

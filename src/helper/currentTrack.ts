@@ -4,9 +4,9 @@ class CurrentTrack {
     songName: string = '';
     artists: string[] = [];
     albumName: string = '';
-    songLink: string | undefined;
-    songPicture: string | undefined;
-    albumLink: string | undefined;
+    songLink: string = '';
+    songPicture: string = '';
+    albumLink: string = '';
 }
 
 function transformCurrentTrack(currentTrack: SpotifyApi.CurrentlyPlayingResponse): CurrentTrack | undefined {

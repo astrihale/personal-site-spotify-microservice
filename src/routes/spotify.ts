@@ -75,6 +75,10 @@ spotifyRouter.get('/music-cred', async (req, res) => {
 spotifyRouter.get('/music', async (req, res) => {
     /*
         #swagger.tags = ['Music']
+        #swagger.responses[200] = {
+            description: 'The track information',
+            schema: { $ref: '#/definitions/CurrentTrack' }
+        }
      */
 
     if (!await tokenHandler()) {
