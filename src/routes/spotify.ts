@@ -1,6 +1,7 @@
 import {Request, Response, Router} from "express";
 import SpotifyWebApi from 'spotify-web-api-node';
 import pino from 'pino';
+import {transformCurrentTrack} from "../helper/currentTrack";
 
 const spotifyRouter = Router();
 const logger = pino({level: 'debug'});
@@ -82,7 +83,7 @@ spotifyRouter.get('/music', async (req, res) => {
 
     try {
         let data = await spotifyAPI.getMyCurrentPlayingTrack();
-        res.status(data.statusCode).send(data.body);
+        res.status(data.statusCode).send(transformCurrentTrack(data.body));
     } catch (error) {
         res.status(500).send({
             message: 'Experienced an error while obtaining current' +
