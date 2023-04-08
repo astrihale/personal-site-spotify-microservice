@@ -1,0 +1,11 @@
+version: '3.9'
+services:
+  web:
+    build: .
+    depends_on:
+      - redis-cache
+  redis-cache:
+    image: redis:7.0-alpine
+    restart: always
+    command: >
+      --requirepass ${REDIS_PASSWORD}
